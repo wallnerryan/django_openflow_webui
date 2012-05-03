@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Forums: Openflow @ Marist{% endblock %}
+{% block add-css %}
+<link rel="stylesheet" href="/static/css/forums.css" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<h1>Forums</h1>
+<div id="visit">
+<table style="background-color: #fff; padding: 5px;" cellspacing=0>
+  <tr><td>
+  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
+         height=30 width=140 alt="Google Groups">
+  </td></tr>
+  <tr><td style="padding-left: 5px;font-size: 125%">
+  <b>Marist OpenFlow</b>
+  </td></tr>
+  <tr><td style="padding-left: 5px">
+  <a href="http://groups.google.com/group/openflow-marist">Visit this group</a>
+  </td></tr>
+</table>
+</div>
+<div id="subscribe">
+<table border=0 style="background-color: #fff; padding: 5px;" cellspacing=0>
+  <tr><td>
+  <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif"
+         height=30 width=140 alt="Google Groups">
+  </td></tr>
+  <tr><td style="padding-left: 5px">
+  <b>Subscribe to Marist OpenFlow</b>
+  </td></tr>
+  <form action="http://groups.google.com/group/openflow-marist/boxsubscribe">
+  <tr><td style="padding-left: 5px;">
+  Email: <input type=text name=email>
+  <input type=submit name="sub" value="Subscribe">
+  </td></tr>
+</form>
+<tr><td align=right>
+  <a href="http://groups.google.com/group/openflow-marist">Visit this group</a>
+</td></tr>
+</table>
+</div>
+{% endblock %}

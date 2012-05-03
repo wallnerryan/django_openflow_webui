@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Documentaion: Openflow @ Marist{% endblock %}
+{% block add-css %}
+<link rel="stylesheet" href="/static/css/docs.css" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<h1>Docs</h1>
+
+<div id="of_docs">
+	<div id="of_docs_content">
+		<h4>OpenFlow Documentation</h4>
+			<ul>
+				<li><a href="/static/media/files/openflow-wp-latest.pdf">OpenFlow whitepaper</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.0.0.pdf">OpenFlow 1.0 Spec</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.1.0.pdf">Openflow 1.1 Spec</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.2.pdf">Openflow 1.2 Spec</a></li>
+				<li><a href="/static/media/files/openflow-tr-2009-1-flowvisor.pdf">FlowVisor technical paper</a></li>
+			</ul>
+	</div>
+</div>
+
+<div id="mar_docs">
+	<div id="mar_docs_content">
+		<h4>Marist Documentation</h4>
+			<ul>
+				<li><a href="">Marist Environment</a></li>
+				<li><a href="">"VLAN" + FlowVisor Integration Research topology</a></li>
+			</ul>
+	</div>
+</div>
+
+{% endblock %}

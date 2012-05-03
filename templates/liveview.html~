@@ -1,0 +1,40 @@
+{% extends "liveviewbase.html" %}
+
+{% block title %}Live View of Openflow @ Marist{% endblock %}
+{% block add-css %}
+<link rel="stylesheet" href="/static/css/liveview.css" type="text/css" />
+{% endblock %}
+{% block add-js %}
+ <script src="/static/js/jquery1.7.js"></script>
+ <script src="/static/js/liveview.js"></script>
+{% endblock %}	
+{% block hiddenvars %}
+{% endblock %}
+{% block jsvars %}
+/*An old attemp on variabl passing (keepings for testing) */
+/*var sw_info = {{ vars|safe }};*/
+
+{% endblock %}
+
+{% block content %}
+<h1>LiveView</h1>
+<h2>LiveView provides a live look into the OpenFlow network at marist.</h2>
+<h4>Textual View of the Network</h4>
+<div id="liveview">
+	<div id="liveview_content">
+		<div id="liveview_switches">
+		</div>
+		<div id="liveview_tables">
+		</div>
+		<div id="liveview_links">
+		</div>
+	</div>
+	<div id="liveview_topology">
+		<canvas id="of_topo" width="500" height="500">
+			<!--Inside the canvas will be rendered if browser does not support canvas-->
+			<p>Browser does not support canvas!, Text description of topology will be used</p>
+			<div id="canvas_fallback"></div>
+		</canvas>
+	</div>
+</div>
+{% endblock %}

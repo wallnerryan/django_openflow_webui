@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+  <meta name="keyword" content="academic technology" />
+  <meta name="description" content="The Marist College Academic Technology group promotes and supports technology-enabled learning, with a dynamic and interdisciplinary team of people and a broad range of services." />
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <link rel="stylesheet" href="/static/css/base.css" type="text/css" />
+  {% block add-css %}{% endblock %}
+  {% block add-js %}{% endblock %}	
+
+</head>
+<body>
+<div id="topbar_container">
+<div id="topbar_content">
+	<div id="topbar_maristlogo"><a href="http://www.marist.edu/"><img src="/static/images/logo.gif"  alt="Marist College" /></a></div>
+</div>
+</div>
+<div id="navbar_container">
+	<div id="navbar_content">
+		<a href="/">Home</a>
+		<span>&diams;</span>
+		<a href="/forums/">Forums</a>
+		<span>&diams;</span>
+		<a href="/liveview/">LiveView</a>
+		<span>&diams;</span>
+		<a href="/docs/">Documentation</a>
+	</div>
+</div>
+</div>
+<div id="body_container">
+<div id="body_content">
+
+<div id="mainwrap">
+<div id="mainbody">
+<span id="ofatmar">Openflow &#64; Marist</span>
+<!-- Python Modules inserted here in 'content' -->
+{% block content %}{% endblock %}
+
+</div>
+</div>
+</div>
+</div>
+<div id="footer_container">
+<div id="footer_content">
+<div>Marist College, 3399 North Road, Poughkeepsie, NY 12601; (845)575-3000<br />
+<span>&copy; Copyright 20012 Marist College. All Rights
+Reserved.</span>
+</div>
+</div>
+
+</div>
+</body>
+</html>
