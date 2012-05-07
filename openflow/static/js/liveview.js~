@@ -10,7 +10,7 @@ $(document).ready(function(){
  
  window.setInterval(function(){
  		renderEnvText();
- 	}, 9000 );
+ 	}, 8000 );
  
  function renderEnvText(){
 	$.ajax({
@@ -58,6 +58,7 @@ $(document).ready(function(){
 						console.log('no matches found, dictionary entry or entries may be wrong');
 					}
 			} 
+			//only for development purposes log stufffs
 			console.log(sw_manu_dict.length);
 			console.log(sw_hardw_dict.length);
 			console.log(sw_softw_dict.length);
@@ -76,26 +77,58 @@ $(document).ready(function(){
 
 function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw,sw_links){
 			//Add switch count to view
+			//check if it has any count already
 			if ( $('#switch_count').children().length <= 0 )
 			{
+				//if not add it
 				$('#switch_count').append('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
 			}
+			//if it does have a count element ... replace it
 			if ( $('#switch_count').children().length > 0 )
 			$('#switch_count').children().replaceWith('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
 			
+			var switches;
+			//check for switches &
 			//Add specific switch details to view
+			if (sw_ids.length > 0)
+		 	{
+		 		$('#notice').children().empty();
+		 		$('#notice').append('<h4>Current OpenFlow switch activity</h4>');
+		 		switches = true;
+		 	}
+		 	else 
+			{
+				console.log('nada');
+				//remove all children and add a notice
+				$('#notice').children().empty();
+				$('#notice').append('<h4>No current OpenFlow switch activity</h4>');
+				switches = false;
+			}
+			//if there are no children in the switch div, ok, then check if there are switches and fill div if true
 		 	if  ($('#liveview_switches').children().length <=0)
 		 	{
-		 		for (i = 0; i<len(sw_ids); i++)
-		 			{
-		 				$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
-		 			}
+		 		//if there are current switches
+		 		if (switches)
+		 		{
+		 			for (i = 0; i< sw_ids.length; i++)
+		 				{
+		 					//add a div element per switch with id as the switch-id
+		 					$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
+						}
+				}
+			}
+			//redraw switch stats if already drawn in div
 		 	if ($('#liveview_switches').children().length > 0)
 		 			{
-		 				console.log('already exist');
+		 				//remove existing switches but not header is current activity is true
+		 				$('#liveview_switches').empty();
+		 				for (i = 0; i< sw_ids.length; i++)
+		 				{
+		 				//refill a div element per switch with id as the switch-id
+		 				$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
+		 				}
 		 			}
-		 	}
-	}
+}
 
 function renderCanvasTopo(sw_num,sw_ids,links){
 	}

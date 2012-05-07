@@ -24,6 +24,7 @@
 	<div id="liveview_content">
 		<div id="switch_count">
 		</div>
+		<div id="notice"></div>
 		<div id="liveview_switches">
 		</div>
 		<div id="liveview_links">
