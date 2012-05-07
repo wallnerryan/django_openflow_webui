@@ -11,9 +11,7 @@
 
   <link rel="stylesheet" href="/static/css/base.css" type="text/css" />
   {% block add-css %}{% endblock %}
-
-<script language="JavaScript">
-</script>
+  {% block add-js %}{% endblock %}	
 
 </head>
 <body>

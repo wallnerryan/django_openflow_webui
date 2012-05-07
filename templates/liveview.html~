@@ -18,13 +18,13 @@
 
 {% block content %}
 <h1>LiveView</h1>
-<h2>LiveView provides a live look into the OpenFlow network at marist.</h2>
+<h2>LiveView provides a live look into the OpenFlow network at Marist.</h2>
 <h4>Textual View of the Network</h4>
 <div id="liveview">
 	<div id="liveview_content">
-		<div id="liveview_switches">
+		<div id="switch_count">
 		</div>
-		<div id="liveview_tables">
+		<div id="liveview_switches">
 		</div>
 		<div id="liveview_links">
 		</div>
