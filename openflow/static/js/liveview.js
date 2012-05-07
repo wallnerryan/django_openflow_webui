@@ -27,23 +27,23 @@ $(document).ready(function(){
 				//Separate out (hardware, id, manufacturer,software etc)
 				if (key.toString().substring(2,4) == "_i")
 					{
-						sw_id_dict.push({key: key, value: data[key]});
+						sw_id_dict.push(data[key]);
 					}
 				else if (key.toString().substring(2,4) == "_h")
 					{
-						sw_hardw_dict.push({key: key, value: data[key]});
+						sw_hardw_dict.push(data[key]);
 					}
 				else if (key.toString().substring(2,4) == "_m")
 					{
-						sw_manu_dict.push({key: key, value: data[key]});
+						sw_manu_dict.push(data[key]);
 					}
 				else if (key.toString().substring(2,4) == "_s")
 					{
-						sw_softw_dict.push({key: key, value: data[key]});
+						sw_softw_dict.push(data[key]);
 					}
 				else if(key.toString().substring(0,3) == "lnk")
 					{
-						topo_links_dict.push({key:key,value:data[key]});
+						topo_links_dict.push(data[key]);
 					}
 				else if(key.toString().substring(0,8) == "switches" )
 					{
@@ -80,17 +80,17 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 			{
 				$('#switch_count').append('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
 			}
-			else if ( $('#switch_count').children().length > 0 )
+			if ( $('#switch_count').children().length > 0 )
 			$('#switch_count').children().replaceWith('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
 			
 			//Add specific switch details to view
 		 	if  ($('#liveview_switches').children().length <=0)
 		 	{
-		 		for (i = 0; i<len(sw_ids); i++)
+		 		for (i = 0; i< sw_ids.length; i++)
 		 			{
-		 				$('#liveview_switches').append('<div id=sw_'+sw_ids[][]+'> Switch '+sw_ids[][]+'</div>');
+		 				$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
 		 			}
-		 	else if ($('#liveview_switches').children().length > 0)
+		 	if ($('#liveview_switches').children().length > 0)
 		 			{
 		 				console.log('already exist');
 		 			}
