@@ -40,6 +40,7 @@ def getOpenFlowParams(request):
 			switchdata_links = urllib2.urlopen('http://10.10.2.101:8080/wm/topology/links/json')
 			switchdata_switches = urllib2.urlopen('http://10.10.2.101:8080/wm/core/controller/switches/json')
 			switchdata_devices = urllib2.urlopen('http://10.10.2.101:8080/wm/devicemanager/device/all/json')
+			switchdata_counters = urllib2.urlopen('http://10.10.2.101:8080/wm/core/counter/all/json')
 			#_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+
 			#switchdata_pktinhist = urllib2.urlopen('http://10.10.2.101:8080/wm/pktinhistory/history/json')
 			#switchdata_pktouthist = urllib2.urlopen('http://10.10.2.101:8080/wm/pktinhistory/history/json')
@@ -105,11 +106,6 @@ def getOpenFlowParams(request):
 										    "lnk-"+str(link_count)+"_dstprt":dst_prt})
 				link_count = link_count + 1
 			
-			#GET JSON of Tables
-			data_tables = json.loads(switchdata_tables.read())
-			jsondata_tables = simplejson.dumps(data_tables)
-			sw_data_tables = simplejson.loads(jsondata_tables)
-			
 			#GET JSON of Connected Devices
 			data_devices = json.loads(switchdata_devices.read())
 			jsondata_devices = simplejson.dumps(data_devices)
@@ -119,6 +115,22 @@ def getOpenFlowParams(request):
 			for device in sw_data_devices:
 				device_count = device_count + 1
 			device_dict.update({"devices_on_network":device_count})
+			
+			#GET JSON of the Counters in the network
+			#will be used for Packet_In and Packet_Out counters per switch per port (or an aggregate)
+			data_counters = json.loads(switchdata_counters.read())
+			jsondata_counters = simplejson.dumps(data_counters)
+			sw_data_counters = simplejson.loads(jsondata_counters)
+			
+			for switch in switchlist:
+				packetIn = 	sw_data_counters[switch+"__OFPacketIn"]
+				broadcast = sw_data_counters[switch+"__OFPacketIn__broadcast"]
+				multicast = sw_data_counters[switch+"__OFPacketIn__multicast"]
+			
+			#GET JSON of Tables
+			data_tables = json.loads(switchdata_tables.read())
+			jsondata_tables = simplejson.dumps(data_tables)
+			sw_data_tables = simplejson.loads(jsondata_tables)
 				
 			#_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+
 			#GET JSON of Packet In History
