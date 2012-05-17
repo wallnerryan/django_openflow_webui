@@ -28,6 +28,10 @@ def docs(request):
 		#create model to hold docs? or serve as static/media/{files}.
 		return render_to_response('docs.html',{})
 		
+#2012 ECC Pres
+def ecc2012(request):
+		return render_to_response('ecc2012.html',{})
+		
 #LiveView
 def liveview(request):
 	return render_to_response('liveview.html', {})
@@ -101,9 +105,9 @@ def getOpenFlowParams(request):
 				dst_prt =  sw_data_links[link_count]['dst-port']
 				
 				topology_links_dict.update({"lnk-"+str(link_count)+"_srcsw":src_sw,
-										    "lnk-"+str(link_count)+"_srcprt":src_prt,
-										    "lnk-"+str(link_count)+"_dstsw":dst_sw,
-										    "lnk-"+str(link_count)+"_dstprt":dst_prt})
+										   								  "lnk-"+str(link_count)+"_srcprt":src_prt,
+										   								  "lnk-"+str(link_count)+"_dstsw":dst_sw,
+										   								  "lnk-"+str(link_count)+"_dstprt":dst_prt})
 				link_count = link_count + 1
 			
 			#GET JSON of Connected Devices
@@ -124,11 +128,12 @@ def getOpenFlowParams(request):
 			counter_dict = {}
 			for switch in switchlist:
 				packetIn = 	sw_data_counters[switch+"__OFPacketIn"]
-				broadcast = sw_data_counters[switch+"__OFPacketIn__broadcast"]
-				multicast = sw_data_counters[switch+"__OFPacketIn__multicast"]
+				offlowmod = sw_data_counters[switch+"__OFFlowMod"]
+				packetout = sw_data_counters[switch+"__OFPacketOut"]
 				
-				counter_dict.update({})
-			
+				counter_dict.update({'pktins_'+str(switch): packetIn,
+																'flowmods_'+str(switch): offlowmod,
+																'pktouts_'+str(switch): packetout})
 			#GET JSON of Tables
 			data_tables = json.loads(switchdata_tables.read())
 			jsondata_tables = simplejson.dumps(data_tables)
@@ -164,6 +169,7 @@ def getOpenFlowParams(request):
 																						   switchids_dict.items() + 
 																						   switchdesc_dict.items() +
 																						   device_dict.items() +
+																						   counter_dict.items() +
 																						   topology_links_dict.items())
 
 			

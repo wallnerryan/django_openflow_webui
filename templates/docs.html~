@@ -12,11 +12,11 @@
 	<div id="of_docs_content">
 		<h4>OpenFlow Documentation</h4>
 			<ul>
-				<li><a href="">OpenFlow whitepaper</a></li>
-				<li><a href="">OpenFlow 1.0 Spec</a></li>
-				<li><a href="">Openflow 1.1 Spec</a></li>
-				<li><a href="">Openflow 1.2 Spec</a></li>
-				<li><a href="">FlowVisor technical paper</a></li>
+				<li><a href="/static/media/files/openflow-wp-latest.pdf">OpenFlow whitepaper</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.0.0.pdf">OpenFlow 1.0 Spec</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.1.0.pdf">Openflow 1.1 Spec</a></li>
+				<li><a href="/static/media/files/openflow-spec-v1.2.pdf">Openflow 1.2 Spec</a></li>
+				<li><a href="/static/media/files/openflow-tr-2009-1-flowvisor.pdf">FlowVisor technical paper</a></li>
 			</ul>
 	</div>
 </div>
@@ -27,6 +27,7 @@
 			<ul>
 				<li><a href="">Marist Environment</a></li>
 				<li><a href="">"VLAN" + FlowVisor Integration Research topology</a></li>
+				<li><a href="/docs/ecc2012/" ></li>
 			</ul>
 	</div>
 </div>
