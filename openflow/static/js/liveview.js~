@@ -85,7 +85,7 @@ $(document).ready(function(){
 			//send to text implementation
 			renderTextBasedInfo(numswitches,numdevices,sw_id,sw_manu,sw_softw,sw_hardw,topo_links,counters);
 			//send to canvas implementation
-			renderCanvasTopo(numswitches,sw_id,topo_links);
+			renderCanvasTopo(numswitches,sw_id,topo_links,numdevices);
 		}
 	});
 };
@@ -97,10 +97,12 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 			{
 				//if not add it
 				$('#switch_count').append('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
+				$('#device_count').append('<p>There are currently: '+device_num+' host devices seen on the network</p>');
 			}
 			//if it does have a count element ... replace it
 			if ( $('#switch_count').children().length > 0 )
 			$('#switch_count').children().replaceWith('<p>There are currently: '+sw_num+' OpenFlow switches in the network</p>');
+			$('#device_count').children().replaceWith('<p>There are currently: '+device_num+' host devices seen on the network</p>');
 			
 			
 			///ADD SWITCHES TO PAGE
@@ -202,15 +204,38 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 		 			//END ADD SWITCHES TO PAGE
 }
 
-function renderCanvasTopo(sw_num,sw_ids,links){
+function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 	   var numswitches = sw_num;
+	   var numdevices = dev_num;
 		var canvas = document.getElementById("of_topo");
-			if(canvas.getContext()) {
+			if(canvas.getContext){
+				//[parameters for switch canvas elements, x and y or origin or corner, they will change]
+				x = 10; x2 = 10;
+				y = 10; y2 = 40;
+				w = 40; w2 = 40;
+				h = 10;  h2 = 50;
 				canvas_ctxt = canvas.getContext("2d");
-				n = 0
-				while (n <= numswitches){
+				canvas_ctxt.clearRect(0,0,canvas.width,canvas.height);
+				n = 0;
+				d = 0;
+				while (n < numswitches){
 					//fill the canvas with shapes as switches
-					//canvas_ctxt.					 
+					canvas_ctxt.fillStyle= "rgba(200,0,0,.5)";
+					canvas_ctxt.fillRect(x,y,w,h);
+					x = x + 50;
+					n = n + 1;
 					}
+					console.log(numdevices);
+				while(d < numdevices){
+					canvas_ctxt.fillStyle= "rgba0,0,200,.5)";
+					canvas_ctxt.fillRect(x2,y2,w2,h2);
+					x2 = x2 + 50;
+					d = d + 1;
+					//console.log('here');
+					}
+				}
+				else
+				{
+				console.log('something went wrong');
 				}
 	}

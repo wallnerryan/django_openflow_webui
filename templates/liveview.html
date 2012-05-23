@@ -19,10 +19,18 @@
 {% block content %}
 <h1>LiveView</h1>
 <h2>LiveView provides a live look into the OpenFlow network at Marist.</h2>
-<h4>Textual View of the Network</h4>
 <div id="liveview">
+	<div id="liveview_topology">
+		<canvas id="of_topo" width="1000" height="100">
+			<!--Inside the canvas will be rendered if browser does not support canvas-->
+			<p>Browser does not support canvas!, Please view text description of topology</p>
+		</canvas>
+	</div>
+	<h4>Textual View of the Network</h4>
 	<div id="liveview_content">
 		<div id="switch_count">
+		</div>
+		<div id="device_count">
 		</div>
 		<div id="notice"></div>
 		<div id="liveview_switches">
@@ -32,12 +40,6 @@
 		 <table id="flowmod_counts"><h4>Flow Mod Counts</h4></table>
 		<div id="liveview_links">
 		</div>
-	</div>
-	<div id="liveview_topology">
-		<canvas id="of_topo" width="500" height="500">
-			<!--Inside the canvas will be rendered if browser does not support canvas-->
-			<p>Browser does not support canvas!, Please view text description of topology</p>
-		</canvas>
 	</div>
 </div>
 {% endblock %}
