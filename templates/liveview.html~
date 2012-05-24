@@ -21,7 +21,7 @@
 <h2>LiveView provides a live look into the OpenFlow network at Marist.</h2>
 <div id="liveview">
 	<div id="liveview_topology">
-		<canvas id="of_topo" width="1000" height="400">
+		<canvas id="of_topo" width="1000" height="100">
 			<!--Inside the canvas will be rendered if browser does not support canvas-->
 			<p>Browser does not support canvas!, Please view text description of topology</p>
 		</canvas>
@@ -34,6 +34,7 @@
 		</div>
 		<div id="notice"></div>
 		<div id="liveview_switches">
+			<div id="manus"></div>
 		</div>
 		 <table id="pktins_counts"><h4>Packet In Counts</h4></table>
 		 <table id="pktouts_counts"><h4>Packet Out Counts </h4></table>

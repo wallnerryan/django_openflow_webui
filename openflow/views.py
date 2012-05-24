@@ -154,25 +154,27 @@ def getOpenFlowParams(request):
 			jsondata_devices = simplejson.dumps(data_devices)
 			sw_data_devices = simplejson.loads(jsondata_devices)
 			device_dict = {}
+			#add a host-dict to store host-id's
 			device_count = 0
 			if len(sw_data_devices) > 0:
 				count = 0
 				curr_time = strftime("%a %b %d %Y %H:%M:%S", localtime())
 				while count < len(sw_data_devices):
 					hst_id = sw_data_devices.keys()[count]
-					print hst_id
-					last_seen = sw_data_devices[hst_id].get('last-seen')
+					#print hst_id
+					last_seen = sw_data_devices[hst_id].get('last-seen') #use a similar method to capture host-id's
 					min_last_seen = int(last_seen[14:16])
-					print min_last_seen
+					#print min_last_seen
 					min_of_curr_time = int(curr_time[19:21])
-					print min_of_curr_time
+					#print min_of_curr_time
 					diff = min_last_seen - min_of_curr_time
-					print diff
+					#print diff
 					count = count + 1
 					if diff > 1 or diff < -1:
 						print "should not add"
 					else:
 						device_count = device_count + 1
+						#add a nother dict.update for host-id's
 			 	device_dict.update({"devices_on_network":device_count})
 			else:
 				device_dict.update({"devices_on_network": 0})

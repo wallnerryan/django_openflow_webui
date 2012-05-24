@@ -132,7 +132,8 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 		 			for (i = 0; i< sw_ids.length; i++)
 		 				{
 		 					//add a div element per switch with id as the switch-id
-		 					$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
+		 					$('#liveview_switches').append('<div id="sw_'+sw_ids[i]+'"'+'> Switch '+sw_ids[i]+'</div>');
+		 					//console.log('sw-manu-id '+sw_manus[i].key.substring(12));
 		 							for ( n = 0; n < counts.length; n++)
 									{
 										ind_of_undscr = counts[n].key.indexOf('_');
@@ -170,10 +171,27 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 		 				$('#pktins_counts').empty();
 		 				$('#pktouts_counts').empty();
 		 				$('#flowmod_counts').empty();
+		 				$('#manus').empty();
 		 				for (i = 0; i< sw_ids.length; i++)
 		 						{
 		 					//add a div element per switch with id as the switch-id
 		 					$('#liveview_switches').append('<div id=sw_'+sw_ids[i]+'> Switch '+sw_ids[i]+'</div>');
+		 					curr_sw = sw_ids[i];
+							//console.log('looking for '+sw_manus[i].key.substring(12));
+							manuCount = 0;
+							while(manuCount < sw_manus.length){
+							id = sw_manus[manuCount].key.substring(12);
+									if(id == curr_sw){
+										console.log('true');
+										$('#manus').append('<p>Switch '+curr_sw+' manufacturer: '+sw_manus[manuCount].value+'</p>');
+										manuCount = manuCount + 1
+										}
+									else{
+										console.log('false');
+										manuCount = manuCount+1
+										}
+									}
+										//console.log('found '+found);
 		 							for ( n = 0; n < counts.length; n++)
 									{
 										ind_of_undscr = counts[n].key.indexOf('_');
