@@ -160,21 +160,39 @@ def getOpenFlowParams(request):
 				count = 0
 				curr_time = strftime("%a %b %d %Y %H:%M:%S", localtime())
 				while count < len(sw_data_devices):
+					#get the host id if current device
 					hst_id = sw_data_devices.keys()[count]
-					#print hst_id
+					#time stamp of current device
 					last_seen = sw_data_devices[hst_id].get('last-seen') #use a similar method to capture host-id's
-					min_last_seen = int(last_seen[14:16])
-					#print min_last_seen
-					min_of_curr_time = int(curr_time[19:21])
+					#Date breakdown of current device timestamp
+					yls = int(last_seen[24:28])
+					dls = last_seen[0:3]
+					nd = int(last_seen[8:10])
+					mls = last_seen[4:7]
+					hls = int(last_seen[11:13])
+					minls = int(last_seen[14:16])
+					#Date breakdown for current timestamp
+					yct =  int(curr_time[11:15])
+					dct =  curr_time[0:3]
+					nct =  int(curr_time[8:10])
+					mct =  curr_time[4:7]
+					hct =  int(curr_time[16:18])
+					minct = int(curr_time[19:21])
 					#print min_of_curr_time
-					diff = min_last_seen - min_of_curr_time
-					#print diff
+					diff = minls - minct
 					count = count + 1
-					if diff > 1 or diff < -1:
-						print "should not add"
+					#print 'dd '+str(yls)+'/'+dls+'/'+str(nd)+'/'+mls+'/'+str(hls)
+					#print 'cd '+str(yct)+'/'+dct+'/'+str(nct)+'/'+mct+'/'+str(hct)
+					if yls == yct and dls == dct and nd == nct and mls == mct and hls == hct:
+						print 'ok, proccess'
+						#print diff
+						if diff > 1 or diff < -1:
+							print "device not currently on network"
+						else:
+							device_count = device_count + 1
+							#add a nother dict.update for host-id's
 					else:
-						device_count = device_count + 1
-						#add a nother dict.update for host-id's
+						print 'pass'
 			 	device_dict.update({"devices_on_network":device_count})
 			else:
 				device_dict.update({"devices_on_network": 0})

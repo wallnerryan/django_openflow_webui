@@ -78,9 +78,8 @@ $(document).ready(function(){
 			console.log(sw_id.length);
 			console.log(topo_links.length);
 			console.log(counters[1].key+'  --> '+counters[1].value);
-			console.log("number of switches: "+numswitches);
+			console.log("number of switches: "+numswitches);*/
 			console.log("number of devices: "+numdevices);
-			*/
 			
 			//send to text implementation
 			renderTextBasedInfo(numswitches,numdevices,sw_id,sw_manu,sw_softw,sw_hardw,topo_links,counters);
@@ -182,12 +181,12 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 							while(manuCount < sw_manus.length){
 							id = sw_manus[manuCount].key.substring(12);
 									if(id == curr_sw){
-										console.log('true');
+										//console.log('true');
 										$('#manus').append('<p>Switch '+curr_sw+' manufacturer: '+sw_manus[manuCount].value+'</p>');
 										manuCount = manuCount + 1
 										}
 									else{
-										console.log('false');
+										//console.log('false');
 										manuCount = manuCount+1
 										}
 									}
@@ -202,17 +201,17 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 												//console.log(counts[n].key.toString().substring(0,ind_of_undscr))
 												if( counts[n].key.toString().substring(0,ind_of_undscr) == 'pktins')
 												{
-													console.log('Packet_In count for '+sw_ids[i]+': '+counts[n].value);
+													//console.log('Packet_In count for '+sw_ids[i]+': '+counts[n].value);
 													$('#pktins_counts').append('<tr><td>'+sw_ids[i]+' Packet_Ins: '+counts[n].value+'</td></tr>');
 												}
 												if( counts[n].key.toString().substring(0,ind_of_undscr) == 'pktouts')
 												{
-													console.log('Packet_Out count for '+sw_ids[i]+': '+counts[n].value);
+													//console.log('Packet_Out count for '+sw_ids[i]+': '+counts[n].value);
 													$('#pktouts_counts').append('<tr><td>'+sw_ids[i]+' Packet_Outs: '+counts[n].value+'</td></tr>');
 												}
 												if( counts[n].key.toString().substring(0,ind_of_undscr) == 'flowmods')
 												{
-													console.log('Flow_Mods count for '+sw_ids[i]+': '+counts[n].value);
+													///console.log('Flow_Mods count for '+sw_ids[i]+': '+counts[n].value);
 													$('#flowmod_counts').append('<tr><td>'+sw_ids[i]+' Flow_Mods: '+counts[n].value+'</td></tr>');
 												}
 											}
@@ -243,7 +242,7 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 					x = x + 50;
 					n = n + 1;
 					}
-					console.log(numdevices);
+					//console.log(numdevices);
 				while(d < numdevices){
 					canvas_ctxt.fillStyle= "rgb(0,0,200)";
 					canvas_ctxt.fillRect(x2,y2,w2,h2);
