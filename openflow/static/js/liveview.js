@@ -222,27 +222,102 @@ function renderTextBasedInfo(sw_num,device_num,sw_ids,sw_manus,sw_softw,sw_hardw
 }
 
 function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
-	   var numswitches = sw_num;
 	   var numdevices = dev_num;
 		var canvas = document.getElementById("of_topo");
 			if(canvas.getContext){
 				//[parameters for switch canvas elements, x and y or origin or corner, they will change]
 				x = 10; x2 = 10;
-				y = 10; y2 = 40;
+				y = 10; y2 = 70;
 				w = 40; w2 = 40;
 				h = 10;  h2 = 50;
 				canvas_ctxt = canvas.getContext("2d");
 				canvas_ctxt.clearRect(0,0,canvas.width,canvas.height);
 				n = 0;
 				d = 0;
-				while (n < numswitches){
+				swOrder = [];
+				while (n < sw_ids.length){
+					//console.log(sw_ids[n]);
+					swOrder.push(sw_ids[n],x,y);
 					//fill the canvas with shapes as switches
 					canvas_ctxt.fillStyle= "rgb(200,0,0)";
 					canvas_ctxt.fillRect(x,y,w,h);
+					/*if (n < sw_ids.length -1){
+					cpx1 = x+15;
+					cpy1 = y+30;
+					canvas_ctxt.beginPath();
+					canvas_ctxt.moveTo(x+5,y+10);
+					canvas_ctxt.quadraticCurveTo(cpx1,cpy1,x+75,y+10);
+					canvas_ctxt.stroke();
+					}*/
 					x = x + 50;
 					n = n + 1;
 					}
-					//console.log(numdevices);
+					matched = 0;
+					for (i = 0; i< links.length; i++){
+						curr_desig = links[i].key;
+						//console.log(curr_desig);
+						x = 0;
+						while(x < links.length){
+							if(curr_desig == 'lnk-'+x+'_srcsw'){
+								//console.log('here');
+								curr_sw = links[i].value;
+								n = 0;
+								while( n < swOrder.length){
+									if(curr_sw == swOrder[n]){
+									//console.log(curr_sw);
+									//console.log(swOrder[n]);
+									//console.log('match');
+									dstkey = 'lnk-'+x+'_dstsw';
+									for(n = 0; n < links.length; n++){
+										if(links[n].key == dstkey){
+											//console.log('found destination switch of current switch');
+											//console.log('source switch: '+curr_sw);
+											//console.log('destination switch: '+links[n].value);
+											src_sw = curr_sw;
+											dst_sw = links[n].value;
+											for(x = 0; x < swOrder.length; x++){
+												//console.log('src sw: '+src_sw+'current_sw_order_sw: '+swOrder[x]);
+												//console.log('src sw: '+dst_sw+'current_sw_order_sw: '+swOrder[x]);
+												if(src_sw == swOrder[x]){
+													//console.log('yes')
+														movetox = swOrder[x+1];
+														movetoy = swOrder[x+2];
+													}
+												if(dst_sw == swOrder[x]){
+													//console.log('yes')
+													curvetox = swOrder[x+1];
+													curvetoy = swOrder[x+2];
+													}
+												}
+												cpx1 = movetox+15;
+												cpy1 = movetoy+30;
+												canvas_ctxt.beginPath();
+												//console.log('x: '+movetox+' y: '+movetoy);
+												//console.log('tx: '+curvetox+' ty: '+curvetoy);
+												canvas_ctxt.moveTo(movetox+20,movetoy+10);
+												canvas_ctxt.quadraticCurveTo(cpx1,cpy1,curvetox+20,curvetoy+10);
+												canvas_ctxt.stroke();
+											}
+										else{
+											//console.log('no destination switch');
+											}
+										}
+									matched  = matched + 1;
+									n = n+1;
+										}
+									else{
+									//console.log('pass');
+									n = n+1;
+										}
+								}
+							x = x + 1;
+							}
+						 else{
+						 	x = x+1;
+						 	}
+						}
+					}
+					//console.log(matched);
 				while(d < numdevices){
 					canvas_ctxt.fillStyle= "rgb(0,0,200)";
 					canvas_ctxt.fillRect(x2,y2,w2,h2);
