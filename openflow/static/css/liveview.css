@@ -19,3 +19,90 @@
 	margin-left: auto;
 	margin-right: auto;
 	}
+	
+h4{
+			font-size: 16pt;
+        font-weight: bold;
+        font-family: 'Times New Roman';
+		  background-color: #B31B1B;
+		  color: white;
+	 	 -moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 5px;
+		 -moz-box-shadow: 10px 10px 5px #888;
+        -webkit-box-shadow: 10px 10px 5px #888;
+		  box-shadow: 10px 10px 5px #888;	
+	
+	}
+	
+#liveview_topology{
+	 	 -moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 5px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+	}
+#switch_count{
+	   	-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+		  margin-bottom: 10px;
+		  }
+#device_count{
+	   	-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;
+			margin-bottom: 10px;
+		  }
+#liveview_switches{
+	   	-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;
+		  margin-bottom: 10px;
+		  }
+#manus{
+	   	-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+		  margin-bottom: 10px;
+		  }
+#pktins_counts {
+			border-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+		  margin-bottom: 10px;
+}
+#pktouts_counts {
+			border-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+		  margin-bottom: 10px;
+}
+#flowmod_counts {
+			border-moz-border-radius: 8px;
+		  border-radius: 8px;
+		  padding: 1px;
+		 -moz-box-shadow: 0px 0px 5px #888;
+        -webkit-box-shadow: 0px 0px 5px #888;
+		  box-shadow: 0px 0px 5px #888;	
+		  margin-bottom: 10px;
+}

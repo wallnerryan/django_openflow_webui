@@ -227,9 +227,9 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 			if(canvas.getContext){
 				//[parameters for switch canvas elements, x and y or origin or corner, they will change]
 				x = 10; x2 = 10;
-				y = 10; y2 = 70;
+				y = 10; y2 = 80;
 				w = 40; w2 = 40;
-				h = 10;  h2 = 50;
+				h = 10;  h2 = 30;
 				canvas_ctxt = canvas.getContext("2d");
 				canvas_ctxt.clearRect(0,0,canvas.width,canvas.height);
 				n = 0;
@@ -239,18 +239,20 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 					//console.log(sw_ids[n]);
 					swOrder.push(sw_ids[n],x,y);
 					//fill the canvas with shapes as switches
-					canvas_ctxt.fillStyle= "rgb(200,0,0)";
-					canvas_ctxt.fillRect(x,y,w,h);
-					/*if (n < sw_ids.length -1){
-					cpx1 = x+15;
-					cpy1 = y+30;
-					canvas_ctxt.beginPath();
-					canvas_ctxt.moveTo(x+5,y+10);
-					canvas_ctxt.quadraticCurveTo(cpx1,cpy1,x+75,y+10);
-					canvas_ctxt.stroke();
-					}*/
-					x = x + 50;
-					n = n + 1;
+					if(x <= 800){
+						canvas_ctxt.fillStyle= "rgb(200,0,0)";
+						canvas_ctxt.fillRect(x,y,w,h);
+						x = x + 50;
+						n = n + 1;
+					 }
+					 if(x >= 800){
+					 	y = y + 20;
+					 	x = 10;
+					 	canvas_ctxt.fillStyle= "rgb(200,0,0)";
+						canvas_ctxt.fillRect(x,y,w,h);
+						x = x + 50;
+						n = n + 1;
+					 	}
 					}
 					matched = 0;
 					for (i = 0; i< links.length; i++){
@@ -259,7 +261,7 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 						x = 0;
 						while(x < links.length){
 							if(curr_desig == 'lnk-'+x+'_srcsw'){
-								console.log('here');
+								//console.log('here');
 								curr_sw = links[i].value;
 								n = 0;
 								while( n < swOrder.length){
@@ -289,14 +291,23 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 													curvetoy = swOrder[x+2];
 													}
 												}
-												cpx1 = movetox+15;
+												cpx1 = (movetox+curvetox)/2;
 												cpy1 = movetoy+30;
 												canvas_ctxt.beginPath();
 												//console.log('x: '+movetox+' y: '+movetoy);
 												//console.log('tx: '+curvetox+' ty: '+curvetoy);
-												canvas_ctxt.moveTo(movetox+20,movetoy+10);
-												canvas_ctxt.quadraticCurveTo(cpx1,cpy1,curvetox+20,curvetoy+10);
-												canvas_ctxt.stroke();
+												if (movetox <= 800){
+													canvas_ctxt.moveTo(movetox+20,movetoy+10);
+													canvas_ctxt.quadraticCurveTo(cpx1,cpy1,curvetox+20,curvetoy+10);
+													canvas_ctxt.stroke();
+												}
+												if(movetox >= 800){
+													movetoy = movetoy + 20;
+													movetox = 10;
+													canvas_ctxt.moveTo(movetox+20,movetoy+10);
+													canvas_ctxt.quadraticCurveTo(cpx1,cpy1,curvetox+20,curvetoy+10);
+													canvas_ctxt.stroke();
+												}	
 											}
 										else{
 											//console.log('no destination switch');
@@ -319,11 +330,21 @@ function renderCanvasTopo(sw_num,sw_ids,links,dev_num){
 					}
 					//console.log(matched);
 				while(d < numdevices){
+					if (x2 <= 800){
 					canvas_ctxt.fillStyle= "rgb(0,0,200)";
 					canvas_ctxt.fillRect(x2,y2,w2,h2);
 					x2 = x2 + 50;
 					d = d + 1;
 					//console.log('here');
+						}
+					if(x2 >= 800){
+						y2 = y2 + 40;
+						x2 = 10;
+						canvas_ctxt.fillStyle= "rgb(0,0,200)";
+						canvas_ctxt.fillRect(x2,y2,w2,h2);
+						x2 = x2 + 50;
+						d = d + 1;
+						}
 					}
 				}
 				else
